@@ -8,7 +8,9 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import { useState } from "react";
 import "./app.css";
+import Navbar from "./components/Navbar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,17 +25,28 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "The Friendly Dev" },
+    { name: "description", content: "Custom website development" },
+  ];
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+      const [menuOpen,setMenuOpen] = useState<boolean>(false)
   return (
-    <html lang="en">
+    <html lang="en" onClick={()=>setMenuOpen((prev) => prev = false)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body >
+        <Navbar  menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+        <main >
+          {children}
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
