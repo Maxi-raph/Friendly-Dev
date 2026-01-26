@@ -44,7 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body >
         <Navbar  menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
-        <main >
+        <main className="max-w-6xl text-center mx-auto px-6 my-8">
           {children}
         </main>
         <ScrollRestoration />
