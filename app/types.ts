@@ -17,5 +17,5 @@ export type Paginate ={
 
 export type HeroProps ={
     name:string
-    text:string
+    text?:string
 }
