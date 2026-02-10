@@ -22,10 +22,10 @@ const ProjectsPage = ({loaderData}:Route.ComponentProps) => {
     const categories = ['All', ...new Set(projects.map(project => project.category))]
 
     //Filter projects based on category
-    const filteredProjects = projects.filter(project=> 
-        selectedCategory == 'All' 
-        ? project
-        : project.category === selectedCategory)
+    const filteredProjects = selectedCategory == 'All' 
+        ? projects
+        : projects.filter(project=> 
+        project.category === selectedCategory)
 
     //Calculate total pages
     const totalPages = Math.ceil(filteredProjects.length/projectsPerPage)

@@ -44,7 +44,7 @@ const Navbar = ({menuOpen,setMenuOpen}:{menuOpen:boolean, setMenuOpen:any}) => {
                 </button>
              
                   {menuOpen 
-                    ? <div className="md:hidden space-y-3 text-sm text-gray-300 flex flex-col text-center w-44 p-1 rounded-md bg-gray-800 border-t-10 border-gray-700 absolute z-40 right-1 top-16" onClick={(e:React.SyntheticEvent)=>e.stopPropagation()}>
+                    ? <div className="md:hidden space-y-3 text-md text-gray-300 flex flex-col text-center w-44 p-1 rounded-md bg-gray-800 border-t-10 border-gray-700 absolute z-40 right-1 top-16" onClick={(e:React.SyntheticEvent)=>e.stopPropagation()}>
                         <NavLink to='/' className={({isActive})=>
                         isActive ? active : base} onClick={showNav}>Home</NavLink>
                         <NavLink to='/projects' className={({isActive})=>
