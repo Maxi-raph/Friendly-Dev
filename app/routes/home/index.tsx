@@ -13,13 +13,15 @@ export function meta({}: Route.MetaArgs) {
 const projectsUrl = import.meta.env.VITE_PROJECTS_API
 
 export async function loader({request}:Route.LoaderArgs):Promise<{projects:Project[]}>{
-  const res = await fetch(`${projectsUrl}/projects`)
+  const  url = new URL('data/db.json', request.url)
+  const res = await fetch(url.href)
   const data = await res.json()
-    return {projects:data}
+    return {projects:data.projects}
 }
 
 const HomePage = ({loaderData}:Route.ComponentProps) =>{
   const {projects} = loaderData
+
   return <>
   <FeaturedProjects  projects={projects} count={2}/>
   <AboutPreview />

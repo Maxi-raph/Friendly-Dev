@@ -5,15 +5,19 @@ import { FaArrowLeft } from 'react-icons/fa'
   
 const projectsUrl = import.meta.env.VITE_PROJECTS_API
 
-export async function clientLoader({request, params}:Route.ClientLoaderArgs):Promise<Project> {
+export async function loader({request, params}:Route.LoaderArgs):Promise<Project> {
 
-    const res = await fetch(`${projectsUrl}/projects/${params.id}`)
-
+    const  url = new URL('data/db.json', request.url)
+    const res = await fetch(`${url.origin}/data/db.json`)
+   console.log(url)
     if(!res.ok) throw new Response(`Project not found`, {status:404})
 
-    const project:Project = await res.json()
+    const project = await res.json()
+         const {id} = params
+          const data:Project = project.projects[Number(id) - 1]
+          
 
-    return project
+    return data
     
 }
 
@@ -22,10 +26,13 @@ export function HydrateFallback(){
 }
 
 const ProductDetailsPage = ({loaderData}:Route.ComponentProps)=>{
+  
       const {id, image, title, description, category, featured,date,url} = loaderData;
 
     return(
+        
         <>
+        
             <Link to={'/projects'} className='flex items-center text-blue-400 hover:text-blue-500 mb-6 transition'>
                 <FaArrowLeft className='mr-2'/> Back To Projects
             </Link>
@@ -44,6 +51,7 @@ const ProductDetailsPage = ({loaderData}:Route.ComponentProps)=>{
             </div>
         </>
     )
+    
 }
 
 export default ProductDetailsPage
