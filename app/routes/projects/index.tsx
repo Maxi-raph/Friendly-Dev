@@ -68,13 +68,13 @@ const width = useWindowWidth()
         <div className='flex flex-wrap gap-2 mb-8'>
             {categories.map(cat=>
               <button key={cat} className={`px-4 py-1 rounded-md text-sm
-               cursor-pointer hover:bg-blue-500 transition duration-700 ${cat == selectedCategory ?  'bg-blue-600' : 'bg-gray-700'}`}
+               cursor-pointer hover:bg-blue-500 transition duration-700 text-white ${cat == selectedCategory ?  'bg-blue-600' : 'bg-gray-700'}`}
                onClick={()=>{
                     setSelectedCategory(cat)
                     setCurrentPage(1)
                }}>
                 {cat}
-              </button>
+              </button> 
              )}
         </div>
         <AnimatePresence mode='wait'>

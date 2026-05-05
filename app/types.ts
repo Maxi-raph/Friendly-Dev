@@ -19,3 +19,11 @@ export type HeroProps ={
     name:string
     text?:string
 }
+
+export type PostMeta= {
+    id: string
+    slug: string
+    title: string
+    excerpt: string
+    date:string
+}

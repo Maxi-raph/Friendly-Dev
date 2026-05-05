@@ -9,7 +9,7 @@ export async function loader({request, params}:Route.LoaderArgs):Promise<Project
 
     const  url = new URL('data/db.json', request.url)
     const res = await fetch(`${url.origin}/data/db.json`)
-   console.log(url)
+
     if(!res.ok) throw new Response(`Project not found`, {status:404})
 
     const project = await res.json()
